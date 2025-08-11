@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_universities/widgets/find_university_screen.dart';
+import 'package:flutter_application_five/screen/find_university_screen.dart';
+
 
 
 class MyApp extends StatelessWidget {

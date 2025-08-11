@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_universities/core/extension.dart';
-import 'package:flutter_application_universities/models/university_model.dart';
-import 'package:flutter_application_universities/services/university_service.dart';
+import 'package:flutter_application_five/core/extension.dart';
+import 'package:flutter_application_five/models/university_model.dart';
+import 'package:flutter_application_five/services/university_service.dart';
 
 class FindUniversityScreen extends StatefulWidget {
   const FindUniversityScreen({super.key});
@@ -131,8 +131,8 @@ class _FindUniversityScreenState extends State<FindUniversityScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text('Country: ${university.country}'),
-              Text('Domains: ${university.domains}'),
-              Text('Web pages: ${university.webPages}'),
+              Text('Domains: ${university.domains.join(', ')}'),
+              Text('Web pages: ${university.webPages.join(', ')}'),
               Text('Alpha two code: ${university.alphaTwoCode}'),
               if (university.stateProvince != null)
                 Text('State province: ${university.stateProvince}'),

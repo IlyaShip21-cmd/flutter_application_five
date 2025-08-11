@@ -1,12 +1,21 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'dart:convert';
+import 'package:json_annotation/json_annotation.dart';
 
+part 'university_model.g.dart';
+
+@JsonSerializable()
 class UniversityModel {
   final String name;
+  @JsonKey(defaultValue: [])
   final List<String> domains;
+  @JsonKey(
+    name: 'web_pages',
+    defaultValue: [],
+  )
   final List<String> webPages;
   final String country;
-  final String alphaTwoCode;
+  @JsonKey(name: 'alpha_two_code')
+  final String? alphaTwoCode;
+  @JsonKey(name: 'state-province')
   final String? stateProvince;
 
   UniversityModel(
@@ -14,26 +23,11 @@ class UniversityModel {
       required this.domains,
       required this.webPages,
       required this.country,
-      required this.alphaTwoCode,
+      this.alphaTwoCode,
       this.stateProvince});
 
-  factory UniversityModel.fromMap(Map<String, dynamic> map) {
-    return UniversityModel(
-      name: map['name'] as String,
-      domains: List<String>.from(
-        (map['domains'] as List),
-      ),
-      webPages: List<String>.from(
-        (map['web_pages'] as List),
-      ),
-      country: map['country'] as String,
-      alphaTwoCode: map['alpha_two_code']! as String,
-      stateProvince: map['state-province'] != null
-          ? map['state-province'] as String
-          : null,
-    );
-  }
+  factory UniversityModel.fromJson(Map<String, dynamic> json) =>
+      _$UniversityModelFromJson(json);
 
-  factory UniversityModel.fromJson(String source) =>
-      UniversityModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  Map<String, dynamic> toJson() => _$UniversityModelToJson(this);
 }

@@ -1,8 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/services.dart';
-
-import 'package:flutter_application_universities/models/university_model.dart';
+import 'package:flutter_application_five/models/university_model.dart';
 
 class UniversityServs {
   static Future<List<UniversityModel>> getUniversities() async {
@@ -10,7 +9,9 @@ class UniversityServs {
       final String jsonString = await rootBundle
           .loadString('assets/world_universities_and_domains.json');
       final List<dynamic> jsonList = json.decode(jsonString);
-      return jsonList.map((item) => UniversityModel.fromMap(item)).toList();
+      return jsonList
+          .map((json) => UniversityModel.fromJson(json as Map<String, dynamic>))
+          .toList();
     } catch (e) {
       print('Error: $e');
       return [];
